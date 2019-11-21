@@ -1,0 +1,6 @@
+package com.example.restaurantapp.recipe;
+
+public class RecipeRepository {
+	
+	
+}
