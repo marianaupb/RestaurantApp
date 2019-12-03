@@ -2,8 +2,14 @@ package com.example.restaurantapp.comments;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.example.restaurantapp.weeklyinfo.WeeklyInfo;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -11,32 +17,47 @@ import javax.persistence.GenerationType;
 public class Comment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long Id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idComment;
 
+	@ManyToOne
+	@JoinColumn(name = "idWeeklyInfo", nullable = false)
+	private WeeklyInfo weeklyInfo;
 	private Date date;
 	private String name;
 	private String email;
+
+	@Column(length = 600)
 	private String commentDescription;
+	private int rating;
 
 	public Comment() {
 
 	}
 
-	public Comment(Date date, String name, String email, String commentDescription) {
+	public Comment(Date date, String name, String email, String commentDescription, int rating) {
 		super();
 		this.date = date;
 		this.name = name;
 		this.email = email;
 		this.commentDescription = commentDescription;
+		this.rating = rating;
 	}
 
-	public long getId() {
-		return Id;
+	public long getIdComment() {
+		return idComment;
 	}
 
-	public void setId(long id) {
-		Id = id;
+	public void setIdComment(long idComment) {
+		this.idComment = idComment;
+	}
+
+	public WeeklyInfo getWeeklyInfo() {
+		return weeklyInfo;
+	}
+
+	public void setWeeklyInfo(WeeklyInfo weeklyInfo) {
+		this.weeklyInfo = weeklyInfo;
 	}
 
 	public Date getDate() {
@@ -69,6 +90,14 @@ public class Comment {
 
 	public void setCommentDescription(String commentDescription) {
 		this.commentDescription = commentDescription;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }

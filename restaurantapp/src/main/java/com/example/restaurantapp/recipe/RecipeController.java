@@ -1,5 +1,5 @@
 package com.example.restaurantapp.recipe;
 
-public class RecipeService {
+public class RecipeController {
 
 }

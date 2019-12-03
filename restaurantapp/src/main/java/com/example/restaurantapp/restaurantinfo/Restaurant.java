@@ -1,5 +1,6 @@
 package com.example.restaurantapp.restaurantinfo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,11 +10,12 @@ import javax.persistence.Id;
 public class Restaurant {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idRestaurant;
 
 	private String restaurantName;
 	private String owner;
+	@Column(length=3000)
 	private String description;
 	private long telephone;
 	private String email;
@@ -30,12 +32,12 @@ public class Restaurant {
 		this.email = email;
 	}
 
-	public long getId() {
-		return id;
+	public long getIdRestaurant() {
+		return idRestaurant;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIdRestaurant(long idRestaurant) {
+		this.idRestaurant = idRestaurant;
 	}
 
 	public String getRestaurantName() {
