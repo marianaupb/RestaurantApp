@@ -35,13 +35,14 @@ public class Comment {
 
 	}
 
-	public Comment(Date date, String name, String email, String commentDescription, int rating) {
+	public Comment(Date date, String name, String email, String commentDescription, int rating, WeeklyInfo weeklyInfo) {
 		super();
 		this.date = date;
 		this.name = name;
 		this.email = email;
 		this.commentDescription = commentDescription;
 		this.rating = rating;
+		this.weeklyInfo = weeklyInfo;
 	}
 
 	public long getIdComment() {

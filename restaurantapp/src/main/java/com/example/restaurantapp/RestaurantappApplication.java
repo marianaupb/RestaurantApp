@@ -9,10 +9,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.restaurantapp.admin.User;
+import com.example.restaurantapp.admin.UserRepository;
+import com.example.restaurantapp.booking.Booking;
+import com.example.restaurantapp.booking.BookingRepository;
 import com.example.restaurantapp.chefinfo.ChefInfo;
 import com.example.restaurantapp.chefinfo.ChefInfoRepository;
+import com.example.restaurantapp.comments.Comment;
+import com.example.restaurantapp.comments.CommentRepository;
 import com.example.restaurantapp.recipe.Recipe;
 import com.example.restaurantapp.recipe.RecipeRepository;
+import com.example.restaurantapp.restaurantinfo.Restaurant;
+import com.example.restaurantapp.restaurantinfo.RestaurantRepository;
 import com.example.restaurantapp.weeklyinfo.WeeklyInfo;
 import com.example.restaurantapp.weeklyinfo.WeeklyInfoRepository;
 
@@ -29,26 +37,19 @@ public class RestaurantappApplication {
 		logger.info("It's working so :) ");
 	}
 
-	// Leaving like this for first test
-	// I created the "deleteAll" to start again everytime, but i'm gonna change it
-	// later
 	@Bean
-	public CommandLineRunner demo(ChefInfoRepository chefrepository, RecipeRepository reciperepository,
-			WeeklyInfoRepository weeklyinforepository) {
+	public CommandLineRunner demo(RestaurantRepository restaurantrepository) {
 		return (args) -> {
-			chefrepository.deleteAll();
-			ChefInfo chefinfo = chefrepository.save(new ChefInfo("Inacio Boueres",
-					"Quisque non mauris et felis facilisis consectetur. Donec eget purus tempus, viverra purus non, venenatis ante. Nam condimentum sapien sed sollicitudin eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed suscipit dignissim dui, ut efficitur leo iaculis non. Sed vel augue in ligula posuere dictum. Ut at mauris lobortis, sollicitudin lectus vel, consequat ipsum."));
 
-			weeklyinforepository.deleteAll();
-			WeeklyInfo weeklyinfo = weeklyinforepository.save(new WeeklyInfo(new Date(),
-					"Quisque non mauris et felis facilisis consectetur. Donec eget purus tempus, viverra purus non, venenatis ante. Nam condimentum sapien sed sollicitudin eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed suscipit dignissim dui, ut efficitur leo iaculis non. Sed vel augue in ligula posuere dictum. Ut at mauris lobortis, sollicitudin lectus vel, consequat ipsum.",
-					chefinfo));
-
-			reciperepository.deleteAll();
-			Recipe recipe = reciperepository.save(new Recipe(new Date(), "Inacio Boueres", "svdsbfibf",
-					"ksjnbhs8 9 uhfuidhuif", "jksfbduhfudf shudf"));
-
+			restaurantrepository.deleteAll();
+			Restaurant restaurant = restaurantrepository.save(new Restaurant("Restaurant Unique", "Mariana Boueres",
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit varius odio, a interdum "
+							+ "mi luctus at. Crasvulputate, quam ut commodo sagittis, nulla neque semper est, non tempus lectus "
+							+ "metus id neque.", 987653789, "dsdushd@nhd.com"));
+/*
+			User user1 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			urepository.save(user1);
+*/
 		};
 	}
 

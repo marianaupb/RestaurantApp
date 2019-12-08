@@ -6,14 +6,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.example.restaurantapp.weeklyinfo.WeeklyInfo;
 
 @Entity
 public class Booking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long idBooking;
+	
+	@ManyToOne
+	@JoinColumn(name = "idWeeklyInfo", nullable = false)
+	private WeeklyInfo weeklyInfo;
 
+	@DateTimeFormat(iso=ISO.DATE) //it allows the system to get only date "new Date()"
 	private Date reservationDate;
 	private String name;
 	private String email;
@@ -23,21 +37,27 @@ public class Booking {
 	public Booking() {
 	}
 
-	public Booking(Date reservationDate, String name, String email, long telephone, int numberOfPeople) {
+	public Booking(Date reservationDate, String name, String email, long telephone, int numberOfPeople, WeeklyInfo weeklyInfo) {
 		super();
 		this.reservationDate = reservationDate;
 		this.name = name;
 		this.email = email;
 		this.telephone = telephone;
 		this.numberOfPeople = numberOfPeople;
+		this.weeklyInfo = weeklyInfo;
 	}
 
-	public long getId() {
-		return id;
+	public Booking(WeeklyInfo weeklyInfo) {
+		super();
+		this.weeklyInfo = weeklyInfo;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public long getIdBooking() {
+		return idBooking;
+	}
+
+	public void setIdBooking(long idBooking) {
+		this.idBooking = idBooking;
 	}
 
 	public Date getReservationDate() {
@@ -78,6 +98,14 @@ public class Booking {
 
 	public void setNumberOfPeople(int numberOfPeople) {
 		this.numberOfPeople = numberOfPeople;
+	}
+
+	public WeeklyInfo getWeeklyInfo() {
+		return weeklyInfo;
+	}
+
+	public void setWeeklyInfo(WeeklyInfo weeklyInfo) {
+		this.weeklyInfo = weeklyInfo;
 	}
 	
 

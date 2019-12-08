@@ -21,7 +21,7 @@ public class Recipe {
 	private long idRecipe;
 	
 	@OneToOne
-	@JoinColumn(name = "idWeeklyInfo")
+	@JoinColumn(name = "idWeeklyInfo", nullable = false)
 	private WeeklyInfo weeklyInfo;
 
 	private Date date;
@@ -35,13 +35,22 @@ public class Recipe {
 	public Recipe() {
 	}
 
-	public Recipe(Date date, String chef, String title, String ingredients, String howToCook) {
+	public Recipe(Date date, String chef, String title, String ingredients, String howToCook, WeeklyInfo weeklyInfo) {
 		super();
 		this.date = date;
 		this.chef = chef;
 		this.title = title;
 		this.ingredients = ingredients;
 		this.howToCook = howToCook;
+		this.weeklyInfo = weeklyInfo;
+	}
+
+	public WeeklyInfo getWeeklyInfo() {
+		return weeklyInfo;
+	}
+
+	public void setWeeklyInfo(WeeklyInfo weeklyInfo) {
+		this.weeklyInfo = weeklyInfo;
 	}
 
 	public String getHowToCook() {

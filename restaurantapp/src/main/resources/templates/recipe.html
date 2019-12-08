@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>Restaurant Unique</title>
+<meta http-equiv="Content-Type" context="text/html" charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+
+<div th:fragment="navbar"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand"><h4>Welcome to the Restaurant Unique</h4></a> 
+	<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true" th:href="@{/restaurantinfo}" type="button">About</a> 
+	<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true" th:href="@{/restaurant}" type="button">Main Page</a>
+</nav>
+
+
+
+<body>
+	<div style="margin-left:30px">
+		<h3><span th:text="${recipe.title}"></span></h3>
+	
+
+	<div>
+		<h4>Ingredients:</h4>
+		<span th:text="${recipe.ingredients}"></span>
+
+	</div>
+	<h4>How to cook:</h4>
+	<span th:text="${recipe.howToCook}"></span>
+	</div>
+	<img style="margin-left:30px" th:src="@{/images/plate.png}" width="10%"  alt=""/></div>
+	<h6>Photo by Spencer Davis on Unsplash</h6>
+</body>
+
+<footer class="footer footer-light bg-light">
+	<div style="text-align: center">
+		<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+			th:href="@{/restaurantinfo}" type="button">Contact Info</a>
+	</div>
+
+	<div style="text-align: right">@Mariana Boueres, 2019</div>
+</footer>

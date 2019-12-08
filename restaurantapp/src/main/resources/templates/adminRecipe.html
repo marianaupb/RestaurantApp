@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>Restaurant Unique</title>
+<meta http-equiv="Content-Type" context="text/html" charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+
+<div th:fragment="navbar"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand"><h4>Welcome to the Restaurant Unique</h4></a> 
+	<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true" th:href="@{/restaurantinfo}" type="button">About</a> 
+	<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true" th:href="@{/restaurant}" type="button">Main Page</a>
+</nav>
+
+<body>
+
+	<h3>Recipe</h3>
+	<div>
+		<form th:object="${recipe}" th:action="@{/admin/recipe}" action="#" method="post">
+		
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="weekly">Week: </label> 
+			<select id = "idWeeklyInfo" th:field = "*{weeklyInfo}" class = "form-control">
+			<option th:each = "weeklyInfo: ${weeklyInfos}" th:value = "${weeklyInfo.idWeeklyInfo}" 
+			th:text = "${weeklyInfo.week}"></option>
+			</select>
+
+			<label for="title">Recipe title: </label> <input type="text"
+				th:field="*{title}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<p>Ingredients: </p>
+			<label for="ingredients"></label> <textarea type="text"
+				th:field="*{ingredients}" style="width:700px; height:700px;"></textarea>
+				
+			<p>How to cook:  </p>
+			<label for="cook"></label> <textarea type="text"
+				th:field="*{howToCook}" style="width:700px; height:700px;"></textarea>
+				
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+
+<footer class="footer footer-light bg-light">
+
+	<div style="text-align: right">@Mariana Boueres, 2019</div>
+</footer>

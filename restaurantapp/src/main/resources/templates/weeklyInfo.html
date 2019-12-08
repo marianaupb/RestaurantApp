@@ -1,36 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
-<title>Weekly Restaurant</title>
+<title>Restaurant Unique</title>
 <meta http-equiv="Content-Type" context="text/html" charset="UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
+
+<div th:fragment="navbar"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand"><h4>Welcome to the Restaurant Unique</h4></a> <a
+		class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+		th:href="@{/restaurantinfo}" type="button">About</a> <a
+		class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+		th:href="@{/booking?idWeeklyInfo={weeklyInfoId}(weeklyInfoId=${weeklyInfo.idWeeklyInfo})}"
+		type="button">Booking</a>
+</nav>
+
 <body>
-	<div class="container">
-		<div class="col-md-4">
-			<h1>Restaurant Unique</h1>
-		</div>
-	</div>
-	<table class="table table-striped">
-		<thead>
+	<div style="text-align: center;">
+		<table>
 			<tr>
-				<th>Week's menu</th>
+				<th><h5>Chef of the week</h5></th>
 			</tr>
-		</thead>
+			<tr>
+				<td><img th:src="@{/images/chef_test.png}" width="20%" /></td>
+				<td><span th:text="${weeklyInfo.chefInfo.chefDescription}"></span></td>
+			</tr>
+
+			<tr>
+				<td><span th:text="${weeklyInfo.chefInfo.chefName}"></span></td>
+			</tr>
+		</table>
+		
+		<table>
 		<tbody>
-		<tr th:each="weeklyInfo: ${weeklyInfos}">
-		<td><span th:text="${weeklyInfo.date}"></span></td>
-		<td><span th:text="${weeklyInfo.menu}"></span></td>
+		<tr>
+			<h5>Week <a th:text="${weeklyInfo.getWeek()}"></a> </h5>
+			<h5>Week's menu</h5>
+			<a th:text="${weeklyInfo.menu}"></a>
 		</tr>
 		
 		</tbody>
-	</table>
-	</body>
-	<footer>
-		<p>Made by: Mariana Boueres, 2019</p>
+		</table>
+
+	<a style="margin-top: 40px" class="btn btn-secondary btn-sm"
+		role="button" aria-pressed="true"
+		th:href="@{/recipe/{id}(id=${weeklyInfo.recipe.idRecipe})}"
+		type="button">Weekly recipe</a>
+</div>
+
+	<h5>Comments:</h5>
+	<table th:each="comment: ${weeklyInfo.comment}">
+		<tr>
+			<td>Name: <span th:text="${comment.name}"></span></td>
+		</tr>
 		
-	</footer>
+		<tr>
+		<td>Comment: <span th:text="${comment.commentDescription}"></span></td>
+		</tr>
+	</table>
+
+	<div>
+		<a style="margin-top: 40px" class="btn btn-secondary btn-sm"
+			role="button" aria-pressed="true"
+			th:href="@{/comment?idWeeklyInfo={weeklyInfoId}(weeklyInfoId=${weeklyInfo.idWeeklyInfo})}"
+			type="button">Comment</a>
+	</div>
+
+</body>
+
+<div style="margin-top: 40px; margin-left: 30px">
+	<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+		th:href="@{/restaurant/{id}/previous(id=${weeklyInfo.idWeeklyInfo})}"
+		type="button">Previous Week</a> <a style="text-align: right;"
+		class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+		th:href="@{/restaurant/{id}/next(id=${weeklyInfo.idWeeklyInfo})}"
+		type="button">Next Weeks</a>
+</div>
+
+<footer class="footer footer-light bg-light">
+	<div style="text-align: center">
+		<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+			th:href="@{/restaurantinfo}" type="button">Contact Info</a>
+	</div>
+
+	<div style="text-align: right">
+		<a class="btn btn-secondary btn-sm" role="button" aria-pressed="true"
+			th:href="@{/admin}" type="button">Admin page</a>
+	</div>
+
+	<div style="text-align: right">@Mariana Boueres, 2019</div>
+</footer>
